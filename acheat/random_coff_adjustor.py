@@ -13,7 +13,7 @@ def random_adjust(evl, coff_num_list, max_loop_time = 32):
     while remain_loop_time > 0:
         --remain_loop_time
         while cur_adj_index == last_adj_index:
-            cur_adj_index = random.randint(0, len(coff_num_list)-1)
+            cur_adj_index = random.randint(0, len(coff_num_list)-1) if len(coff_num_list) > 1 else 0
         last_adj_index = cur_adj_index
         best_coff_id = adjust_list[cur_adj_index]
         cur_coff_id = best_coff_id
