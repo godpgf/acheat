@@ -8,7 +8,7 @@ def random_adjust(evl, coff_num_list, max_loop_time = 32):
     last_adj_index = -1
     cur_adj_index = -1
     best_evl = 0
-    adjust_list = [0 for i in range(len(coff_num_list))]
+    adjust_list = [random.randint(0,len(coff_num_list[i])-1) for i in range(len(coff_num_list))]
     remain_loop_time = max_loop_time
     while remain_loop_time > 0:
         --remain_loop_time
