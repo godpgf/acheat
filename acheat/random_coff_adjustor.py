@@ -5,6 +5,10 @@ import random
 #coff_num_list保存的是每个参数的长度
 #max_loop_time表示随机随机测试多少次找不到最大值就停止
 def random_adjust(evl, coff_num_list, max_loop_time = 32):
+
+    if len(coff_num_list) == 0:
+        return [],eval([])
+
     last_adj_index = -1
     cur_adj_index = -1
     best_evl = 0
