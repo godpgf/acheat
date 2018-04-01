@@ -33,6 +33,8 @@ def random_adjust(evl, coff_num_list, max_loop_time = 32):
         if best_coff_id != cur_coff_id:
             adjust_list[cur_adj_index] = best_coff_id
             remain_loop_time = max_loop_time
+        else:
+            adjust_list[cur_adj_index] = cur_coff_id
         if len(coff_num_list) == 1:
             break
     return adjust_list, best_evl
