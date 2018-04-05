@@ -122,18 +122,20 @@ def random_coff_feature_adj(evl, coff_num_list, feature_num_list, scores, relati
             tree.add_child(cur_id, child_id)
             cur_id = child_id
 
-        sel_num = feature_num_list[act_id]
-        def sel_evl(selection):
-            return evl(choose_list, selection)
-        selection, tree[cur_id].expect_return = random_select(sel_evl, sel_num, scores, relation_table, max_fail_time, fail_continue_percent)
+            sel_num = feature_num_list[act_id]
 
-        if tree[cur_id].expect_return > max_reward:
-            max_reward = tree[cur_id].expect_return
-            best_choose_list = choose_list
-            best_selection = selection
+            def sel_evl(sel):
+                return evl(choose_list, sel)
+
+            selection, tree[cur_id].expect_return = random_select(sel_evl, sel_num, scores, relation_table, max_fail_time, fail_continue_percent)
+
+            if tree[cur_id].expect_return > max_reward:
+                max_reward = tree[cur_id].expect_return
+                best_choose_list = choose_list
+                best_selection = selection
 
         pre_id = tree[cur_id].pre_id
-        #cur_leaf_id = cur_id
+        cur_leaf_id = cur_id
         while pre_id != -1:
             child_num = tree.get_child_num(pre_id)
             r = 0
@@ -143,6 +145,6 @@ def random_coff_feature_adj(evl, coff_num_list, feature_num_list, scores, relati
             tree[pre_id].expect_return += lr * (r + step * next_r  - tree[pre_id].expect_return)
             cur_leaf_id = pre_id
             pre_id = tree[cur_leaf_id].pre_id
-
+        tree[cur_leaf_id].expect_return -= tired_coff
         epoch_num -= 1
     return best_choose_list, best_selection, max_reward
