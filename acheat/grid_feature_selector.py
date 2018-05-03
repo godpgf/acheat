@@ -48,5 +48,6 @@ def grid_select(evl, sel_num, data_num, max_fail_time = 32):
         else:
             fail_time += 1
             selection[cur_replace_index] = last_replace_value
+        evl(selection, cur_replace_index, best_evl)
 
     return selection, best_evl
