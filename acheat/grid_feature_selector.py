@@ -10,7 +10,7 @@ def grid_select(evl, sel_num, data_num, max_fail_time = 32):
     for i in xrange(sel_num):
         selection.append(i)
         selection_des.append("%d"%i)
-    best_evl = evl(selection, -1, 0)
+    best_evl = evl(selection, -1, -1)
     if sel_num == data_num:
         return selection, best_evl
     fail_time = 0
