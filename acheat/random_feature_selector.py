@@ -62,7 +62,8 @@ def search_best_select(evl, selection, cur_evl, scores, score_percent, relation_
             cur_evl = evl_value
             remain_time = max_fail_time[cur_depth]
         else :#如果尝试的选择效果不好
-            if cur_depth + 1 == search_depth :
+            if cur_depth + 1 == search_depth:
+                selection[len(selection) - 1] = lase_index
                 continue
             #选择效果不好,有一定概率接着不好的选择继续尝试
             if random.uniform(0,1) < fail_continue_percent:
