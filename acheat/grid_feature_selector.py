@@ -32,9 +32,9 @@ def grid_select(evl, data_num_list, max_fail_time = 32):
                 selection[cur_replace_index] = i
 
                 #判断是否出现过
-                sorted_sel = sorted(selection)
+                # sorted_sel = sorted(selection)
                 for j in range(len(data_num_list)):
-                    selection_des[j] = "%d"%sorted_sel[j]
+                    selection_des[j] = "%d"%selection[j]
                 des = ','.join(selection_des)
                 if des in selection_set:
                     continue
@@ -51,6 +51,6 @@ def grid_select(evl, data_num_list, max_fail_time = 32):
         else:
             fail_time += 1
             selection[cur_replace_index] = last_replace_value
-        evl(selection, cur_replace_index, best_evl)
+    evl(selection, -1, best_evl)
 
     return selection, best_evl
